@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmyeleaf.org/" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.cssstyle.css"/>
+</head>
+<body>
+
+    <h3>User Details</h3>
+    <div sec:authorize-expr="isFullyAuthenticated()">
+        <!--Logged in user: <b th:inline="text"  class="user"> [[${#httpServletRequest.remoteUser}]] </b>-->
+        <div>
+            <span sec:authentication="name"></span>
+        </div>
+        <form th:action="@{/logoutAction}" method="POST">
+            <input type="submit" value="Logout"/>
+        </form>
+    </div>
+    <h1 th:text="${title}"></h1>
+    <h2>Login Success!</h2>
+    <a sec:authorize-expr="isFullyAuthenticated()" href="">for user/admin</a>
+    <br/>
+    <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" href="">for admin</a>
+</body>
+</html>

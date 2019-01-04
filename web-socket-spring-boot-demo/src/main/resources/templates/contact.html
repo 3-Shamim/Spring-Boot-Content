@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title th:text="${title}"></title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.1.3/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <script th:src="@{/webjars/jquery/3.1.0/jquery.min.js}"></script>
+    <script th:src="@{webjars/bootstrap/4.1.3/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/sockjs-client/1.0.2/sockjs.min.js}"></script>
+    <script th:src="@{/webjars/stomp-websocket/2.3.3/stomp.min.js}"></script>
+
+    <!--<script src="/app.js"></script>-->
+
+</head>
+<body>
+
+<div class="full-content-center">
+
+    <div class="bg-primary" id="info-text">
+
+    </div>
+
+    <form class="contact-form" th:object="${contact}" method="post">
+
+        <input type="hidden" th:value="${userName}" id="userName"/>
+
+        <div class="form-group">
+            <label th:for="name">Name</label>
+            <input class="form-control" th:field="*{name}"
+                   placeholder="Enter Name">
+        </div>
+        <div class="form-group">
+            <label type="email" th:for="email">Email</label>
+            <input class="form-control" th:field="*{email}"
+                   placeholder="Enter Email">
+        </div>
+        <div class="form-group">
+            <label th:for="subject">Subject</label>
+            <input class="form-control" th:field="*{subject}"
+                   placeholder="Enter Subject">
+        </div>
+        <div class="form-group">
+            <label th:for="message">Message</label>
+            <textarea class="form-control" th:field="*{message}" cols="30" rows="3" placeholder="Enter Message..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    $(document).ready(function () {
+        var stompClient = null;
+
+        $(document).ready(function(){
+
+            if(stompClient!= null)
+                stompClient.disconnect();
+
+            var socket = new SockJS('/live-contact');
+            stompClient = Stomp.over(socket);
+
+            stompClient.connect({}, function () {
+                stompClient.subscribe("/user/queue/user-notify",function (msg) {
+                    var acceptMsg = JSON.parse(msg.body);
+                    $("#info-text").append("<p class='text-info'>" + acceptMsg.msg + " </p>")
+                });
+            });
+
+            $(".contact-form").submit(function(e){
+
+                sendData2Socket();
+
+                e.preventDefault();
+
+            });
+        });
+
+        function sendData2Socket() {
+
+            var userName = $("#userName").val();
+            var name = $("#name").val();
+            var email = $("#email").val();
+            var subject = $("#subject").val();
+            var message = $("#message").val();
+
+            console.log(name + " " + email + " " + subject + " " + message);
+
+            stompClient.send("/app/contact." + userName, {}, JSON.stringify({'name': name, 'email': email,
+                'subject': subject, 'message': message}));
+
+        }
+    });
+
+    /*]]>*/
+</script>
+
+</body>
+</html>

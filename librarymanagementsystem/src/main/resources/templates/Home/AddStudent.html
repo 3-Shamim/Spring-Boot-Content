@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+<body>
+    <div class="container">
+        <nav th:replace="fragments :: main-nav"></nav>
+
+        <h2 th:text="${title}"></h2>
+
+        <form method="post" action="" th:object="${student}">
+            <div class="form-group">
+                <label th:for="name">Name</label>
+                <input class="form-control" th:field="*{name}" />
+                <span class="errors" th:errors="*{name}"></span>
+            </div>
+            <div class="form-group">
+                <label th:for="sex">Select Course</label>
+                <select class="form-control" name="sex" >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label th:for="name">Address</label>
+                <input class="form-control" th:field="*{address}" />
+                <span class="errors" th:errors="*{address}"></span>
+            </div>
+
+            <button class="btn btn-success" type="submit"> Add Student </button>
+        </form>
+    </div>
+</body>
+</html>

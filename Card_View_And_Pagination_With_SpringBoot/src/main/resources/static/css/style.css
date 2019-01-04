@@ -1,0 +1,86 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #dde1e2;
+}
+
+.product {
+    overflow: hidden;
+}
+
+.card {
+    width: 31.33%;
+    overflow: hidden;
+    float: left;
+    margin: 1%;
+    padding: 15px;
+    background-color: #1a15f0;
+}
+
+.card .image {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    border-radius: 50%;
+    border: 10px red solid;
+}
+
+.card .image img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.card .content {
+
+}
+
+footer{
+margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

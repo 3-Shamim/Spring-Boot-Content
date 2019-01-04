@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <script type="javascript/text" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <h2>Upload Image</h2>
+    <form method="post" action="">
+        <div class="form-group">
+            <label for="file">Upload Image</label>
+            <input type="file"  id="file" name="file"/>
+            <span class="errors" ></span>
+        </div>
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+</body>
+</html>

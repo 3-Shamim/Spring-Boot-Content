@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            /*------- Call Back Function --------*/
+
+            setTimeout('load()', 1000);
+
+        });
+        function load() {
+            $.ajax({
+                url: "http://localhost:8080/api/users",
+                type: "GET",
+                success: function(data) {
+                    console.log(data);
+
+                    var value = '';
+                    for (var i in data)
+                    {
+                        value += '<tr>';
+                        value += '<td>'+i+'</td>';
+                        value += '<td>'+data[i].id+'</td>';
+                        value += '<td>'+data[i].name+'</td>';
+                        value += '</tr>';
+                        $("#myTable").html(value);
+                    }
+
+                }
+            });
+            setTimeout('load()', 1000);
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h4>Live Data From Json URL With AJAX</h4>
+</div>
+
+<div class="table">
+    <div class="latestSharePriceTable">
+        <table class="table table-bordered " border>
+            <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody id="myTable">
+
+            </tbody>
+        </table>
+</div>
+
+
+<!-- FOOTER -->
+
+
+</body>
+</html>

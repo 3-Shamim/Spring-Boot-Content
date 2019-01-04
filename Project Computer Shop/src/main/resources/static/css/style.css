@@ -1,0 +1,52 @@
+body{
+    margin: 0;
+}
+/* Sing up start */
+.header-title {
+    background-color: #485460;
+    padding: 10px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.header-title h4 {
+    font-size: 26px;
+}
+.registrationForm {
+    width: 400px;
+    margin: auto;
+    background-color: #485460;
+    padding: 10px;
+    color: #fff;
+}
+
+/* Nav Menu */
+.navigation {
+    overflow: hidden;
+    background-color: #353b48;
+}
+.navigation ul {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+.navigation ul li {
+    display: inline;
+    list-style: none;
+    margin: 0 5px;
+}
+.navigation ul li a {
+    display: inline-block;
+    padding: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+.navigation ul li a:hover {
+    background-color: #2ed573;
+}
+
+.navigation .right {
+    float: right;
+    margin: 14px 10px;
+}

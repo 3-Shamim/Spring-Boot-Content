@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<main role="main">
+
+    <div class="full-content">
+        <div class="admin-content">
+            <h1 class="headerTitle" th:text="${title}"></h1>
+            <div class="admin-body">
+                <table class="table table-bordered ">
+                    <thead class="thead-default">
+                    <tr>
+                        <th>User Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Gender</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="users : ${userList}">
+                        <td th:text="${users.id}"></td>
+                        <td th:text="${users.name.firstName}"></td>
+                        <td th:text="${users.name.lastName}"></td>
+                        <td th:text="${users.gender}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="container">
+        <p>&copy; 2017 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+
+</main>
+
+</body>
+</html>

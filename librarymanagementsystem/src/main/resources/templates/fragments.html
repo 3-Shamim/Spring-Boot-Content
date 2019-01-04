@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment = "head">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <script type="javascript/text" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+    <nav th:fragment="main-nav">
+        <ul class="nav nav-tabs">
+            <li class=""><a href="/Home">Home</a></li>
+            <li><a href="/Home/addBook">Add Book</a></li>
+            <li><a href="/Home/StudentList">Student List</a></li>
+            <li><a href="/Home/addStudent">Add Student</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

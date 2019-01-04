@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragment/fragments :: head"></head>
+<body>
+
+<div class="container">
+   <div class="product">
+       <div th:each="product : ${products}"  class="card">
+           <div class="image">
+               <img th:src="@{/images/4.jpg}" alt="productImage">
+           </div>
+           <div class="content">
+
+           </div>
+       </div>
+   </div>
+    <div class="pagination">
+        <ul class="nav nav-pills" th:with="totalPages = ${totalPage}">
+            <li class="nav-item" th:each="i : ${#numbers.sequence(0,totalPages)}" >
+                <a th:text="${i}" th:href="@{/cardView/(page=${i})}" class="nav-link"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer th:replace="fragment/fragments :: footer"></footer>
+
+
+</body>
+</html>

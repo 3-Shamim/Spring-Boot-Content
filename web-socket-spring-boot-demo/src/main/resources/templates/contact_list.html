@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:replace="contact :: head"></head>
+<body>
+
+<div class="container text-center">
+    <button type="button" class="btn btn-primary notification-button">
+        Notifications <span class="badge badge-light" id="notification" th:text="${unseenContactCount > 0 ? unseenContactCount : 0}"></span>
+    </button>
+
+    <ul class="list-group notification-box">
+        <li class="list-group-item" th:if="${contacts.size() > 0}" th:each="contact : ${contacts}">
+            <th:block th:text="${contact.name}"></th:block>
+            <button class="btn btn-primary" th:value="${contact.user.name}" onclick="accept(this)">Accept</button>
+        </li>
+    </ul>
+</div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var stompClient = null;
+
+    $(document).ready(function(){
+
+        if(stompClient!=null)
+            stompClient.disconnect();
+
+        var socket = new SockJS('/live-contact');
+        stompClient = Stomp.over(socket);
+
+        stompClient.connect({}, function (frame) {
+            stompClient.subscribe('/topic/contact-list', function (contact) {
+
+                var contactJson = JSON.parse(contact.body);
+
+                console.log(contactJson);
+
+                $(".list-group").prepend('<li class="list-group-item">' + contactJson.name + ' <button class="btn btn-primary" value="'+ contactJson.user.name +'" onclick="accept(this)">Accept</button>' +'</li>');
+
+                var previousNotification = parseInt($("#notification").text());
+
+
+
+                $("#notification").text(previousNotification + 1);
+
+            });
+        });
+
+    });
+
+    function accept(e) {
+        console.log(e.value);
+        console.log("clicked accept");
+        stompClient.send("/app/user." + e.value, {}, JSON.stringify({msg: e.value}));
+    }
+
+
+    /*]]>*/
+</script>
+
+</body>
+</html>

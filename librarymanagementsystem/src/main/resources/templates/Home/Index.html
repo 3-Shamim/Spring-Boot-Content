@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+<body>
+    <div class="container">
+        <nav th:replace="fragments :: main-nav"></nav>
+
+        <h2 th:text="${title}"></h2>
+
+        <div class="right">
+            <div class="bookTable">
+                <form action="" method="post">
+                    <table class="table">
+                        <thead class="thead-inverse">
+                        <tr>
+                            <th><label><input type="checkbox" name="checkbox" id="checkAll"/> Check All </label></th>
+                            <th>Id</th>
+                            <th>Book Name</th>
+                            <th>Quantity</th>
+                            <th>Availability</th>
+                        </tr>
+                        <tr th:each="list : ${bookList}">
+                            <td><input class="case" type="checkbox" name="selectedBook" th:value="${list.Id}"/></td>
+                            <td th:text="${list.Id}"></td>
+                            <td th:text="${list.name}"></td>
+                            <td th:text="${list.quantity}"></td>
+                            <td th:text="${list.availability}"></td>
+                        </tr>
+                        </thead>
+                    </table>
+
+                    <button class="" type="submit" name="Add" >Add</button>
+
+                </form>
+
+                <span class="errors" th:text="${errors}"></span>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="title"></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.cssstyle.css"/>
+</head>
+<body>
+    <div>
+        <h2 th:text="'Single Image'"></h2>
+        <img th:src="${'/image/' + image.id}" alt="image" />
+
+        <!--<img th:src="${'/image/' + fileUpload.id}" />-->
+    </div>
+</body>
+</html>

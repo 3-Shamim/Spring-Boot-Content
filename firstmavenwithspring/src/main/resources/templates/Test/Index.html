@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <script type="javascript/text" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+    <div class="container">
+        <h2 th:text="'List Of Student'"></h2>
+        <table class="table">
+            <thead class="thead-inverse">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+            <tr th:each="student : ${studentList}">
+                <td th:text="${student.Id}"></td>
+                <td th:text="${student.name}"></td>
+            </tr>
+            </thead>
+        </table>
+        <a href="/List/form"> Add Student </a>
+    </div>
+</body>
+</html>

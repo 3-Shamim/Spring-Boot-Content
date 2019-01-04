@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.cssstyle.css"/>
+</head>
+<body>
+
+    <div class="container">
+        <h2 th:text="${title}"></h2>
+        <form class="form-control-static" method="post" action="/test" enctype="multipart/form-data">
+            <input type="file" name="file"/>
+            <br/>
+            <input type="submit" class="btn btn-success"/>
+        </form>
+
+        <div>
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Image</th>
+                </tr>
+                <tr th:each="fileUpload : ${fileList}">
+                    <td th:text="${fileUpload.id}"></td>
+                    <td><img style="width: 100px" th:src="${'/image/' + fileUpload.id}" /></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>
