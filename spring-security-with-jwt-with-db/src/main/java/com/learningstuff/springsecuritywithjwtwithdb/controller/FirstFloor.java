@@ -20,7 +20,6 @@ public class FirstFloor {
     }
 
      @GetMapping(value = "office2")
-     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> enterOffice2() {
         return new ResponseEntity<>("You are inside office 2", HttpStatus.OK);
     }
